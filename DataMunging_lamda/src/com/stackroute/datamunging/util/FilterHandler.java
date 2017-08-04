@@ -13,7 +13,6 @@ public class FilterHandler {
 	public List<String> filterFields(QueryParameter queryParameter, List<String> record) {
 		
 		List<String> selectedFields= queryParameter.getFields();
-		header = queryParameter.getHeader();
 		
 	//	record.stream().filter(field -> field.split(",")[i]==)
 		
