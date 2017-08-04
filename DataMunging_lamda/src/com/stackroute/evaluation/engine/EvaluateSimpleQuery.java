@@ -24,6 +24,7 @@ public class EvaluateSimpleQuery implements EvaluateEngine {
 	public ResultSet evaluate(QueryParameter queryParameter) {
 		resultSet = new ResultSet();
 		filterHandler=new FilterHandler();
+		List<String> selectedFields = queryParameter.getFields();
 		
 		List<List<String>> result = new ArrayList<List<String>>();
 			try (BufferedReader reader = new BufferedReader(new FileReader(queryParameter.getFile()))) {
@@ -38,7 +39,10 @@ public class EvaluateSimpleQuery implements EvaluateEngine {
 				
 				//result.add(Arrays.asList(line.split(",")));
 				
+				if(!selectedFields.get(0).equals("*"))
+				{
 					record=filterHandler.filterFields(queryParameter,record);
+				}
 					result.add(record);
 			
 				}
