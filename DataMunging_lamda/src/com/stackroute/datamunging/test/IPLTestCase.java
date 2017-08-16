@@ -3,6 +3,7 @@ package com.stackroute.datamunging.test;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -40,7 +41,28 @@ public class IPLTestCase {
 		displayAggregateResult(queryString, records.getAggregateFunctions());
 	}
 	
+	@Test
+	public void getGroupeByAggregate() {
+		queryString = "select * from ipl.csv group by city";
+		ResultSet records = query.executeQuery(queryString);
+		assertNotNull("filterData", records);
+		displayGroupeByAggregateResult(queryString, records.getGroupByResult());
+	}
 	
+	
+	
+	
+	
+	private void displayGroupeByAggregateResult(String queryString,	Map<String,List<List<String>>> groupByResult) {
+		System.out.println("\nGiven Query : " + queryString);
+		
+		groupByResult.entrySet().forEach(System.out::println);
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	private void displayAggregateResult(String queryString, List<AggregateFunction> aggregateFunctions) {
 		System.out.println("\nGiven Query : " + queryString);
 		aggregateFunctions.forEach(aggregate->{

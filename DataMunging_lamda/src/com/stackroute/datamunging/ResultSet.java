@@ -6,11 +6,22 @@ import java.util.Map;
 import com.stackroute.query.parser.AggregateFunction;
 
 public class ResultSet {
-	
+
 	private List<List<String>> result;
-	
-	private List<AggregateFunction>  aggregateFunctions;
-public List<List<String>> getResult() {
+
+	private List<AggregateFunction> aggregateFunctions;
+
+	Map<String, List<List<String>>> groupByResult;
+
+	public Map<String, List<List<String>>> getGroupByResult() {
+		return groupByResult;
+	}
+
+	public void setGroupByResult(Map<String, List<List<String>>> groupByResult) {
+		this.groupByResult = groupByResult;
+	}
+
+	public List<List<String>> getResult() {
 		return result;
 	}
 
@@ -26,7 +37,4 @@ public List<List<String>> getResult() {
 		this.aggregateFunctions = aggregateFunctions;
 	}
 
-	
-
 }
-
