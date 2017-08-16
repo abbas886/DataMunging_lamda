@@ -115,6 +115,16 @@ public class DataMungingTestCase {
 		assertNotNull("filterData", records);
 		displayAggregateResult(queryString, records.getAggregateFunctions());
 	}
+	
+	@Test
+	public void aggregateFunctionsCountTestCase() {
+		queryString = "select count(department) from D:/employee.csv";
+		ResultSet records = query.executeQuery(queryString);
+		assertNotNull("filterData", records);
+		displayAggregateResult(queryString, records.getAggregateFunctions());
+	}
+	
+	
 	private void displayAggregateResult(String queryString, List<AggregateFunction> aggregateFunctions) {
 		System.out.println("\nGiven Query : " + queryString);
 		aggregateFunctions.forEach(aggregate->{
