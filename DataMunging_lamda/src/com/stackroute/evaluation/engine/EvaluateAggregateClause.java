@@ -52,6 +52,7 @@ public class EvaluateAggregateClause implements EvaluateEngine {
 		IntSummaryStatistics stats = null;
 		int count = 0;
 		for (AggregateFunction aggregate : aggregates) {
+		
 			try {
 				stats = result.stream()
 						.mapToInt((record) -> Integer.parseInt(record.get(header.get(aggregate.getField()))))

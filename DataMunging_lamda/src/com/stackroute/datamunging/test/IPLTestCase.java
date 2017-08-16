@@ -2,6 +2,7 @@ package com.stackroute.datamunging.test;
 
 import static org.junit.Assert.*;
 
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 
@@ -42,18 +43,50 @@ public class IPLTestCase {
 	}
 	
 	@Test
-	public void getGroupeByAggregate() {
-		queryString = "select * from ipl.csv group by city";
+	public void getGroupeByAggregateCount() {
+		queryString = "select city,count(win_by_wickets) from ipl.csv group by city";
 		ResultSet records = query.executeQuery(queryString);
 		assertNotNull("filterData", records);
-		displayGroupeByAggregateResult(queryString, records.getGroupByResult());
+		displayGroupeByAggregateResult(queryString, records.getGroupByAggregateResult());
+	}
+	
+	@Test
+	public void getGroupeByAggregateMax() {
+		queryString = "select city,max(win_by_wickets) from ipl.csv group by city";
+		ResultSet records = query.executeQuery(queryString);
+		assertNotNull("filterData", records);
+		displayGroupeByAggregateResult(queryString, records.getGroupByAggregateResult());
+	}
+	
+	@Test
+	public void getGroupeByCountStar() {
+		queryString = "select city,count(*) from ipl.csv group by city";
+		ResultSet records = query.executeQuery(queryString);
+		assertNotNull("filterData", records);
+		displayGroupeByAggregateResult(queryString, records.getGroupByAggregateResult());
+	}
+	
+	@Test
+	public void getGroupeByAggregateAvg() {
+		queryString = "select city,avg(win_by_wickets) from ipl.csv group by city";
+		ResultSet records = query.executeQuery(queryString);
+		assertNotNull("filterData", records);
+		displayGroupeByAggregateResult(queryString, records.getGroupByAggregateResult());
+	}
+	
+	@Test
+	public void getGroupeByAggregateSum() {
+		queryString = "select city,sum(season) from ipl.csv group by city";
+		ResultSet records = query.executeQuery(queryString);
+		assertNotNull("filterData", records);
+		displayGroupeByAggregateResult(queryString, records.getGroupByAggregateResult());
 	}
 	
 	
 	
 	
 	
-	private void displayGroupeByAggregateResult(String queryString,	Map<String,List<List<String>>> groupByResult) {
+	private void displayGroupeByAggregateResult(String queryString,	Map<String, DoubleSummaryStatistics> groupByResult) {
 		System.out.println("\nGiven Query : " + queryString);
 		
 		groupByResult.entrySet().forEach(System.out::println);

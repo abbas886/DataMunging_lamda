@@ -1,5 +1,6 @@
 package com.stackroute.datamunging;
 
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,19 @@ public class ResultSet {
 
 	private List<AggregateFunction> aggregateFunctions;
 
-	Map<String, List<List<String>>> groupByResult;
+	private Map<String, List<List<String>>> groupByResult;
+	
+	private Map<String, DoubleSummaryStatistics> groupByAggregateResult;
+	
+	
+
+	public Map<String, DoubleSummaryStatistics> getGroupByAggregateResult() {
+		return groupByAggregateResult;
+	}
+
+	public void setGroupByAggregateResult(Map<String, DoubleSummaryStatistics> groupByAggregateResult) {
+		this.groupByAggregateResult = groupByAggregateResult;
+	}
 
 	public Map<String, List<List<String>>> getGroupByResult() {
 		return groupByResult;
