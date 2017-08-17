@@ -50,7 +50,7 @@ public class IPLTestCase {
 		displayGroupeByAggregateResult(queryString, records.getGroupByAggregateResult());
 	}
 	
-//	@Test
+    //@Test
 	public void getGroupeByAggregateMax() {
 		queryString = "select city,max(win_by_wickets) from ipl.csv group by city";
 		ResultSet records = query.executeQuery(queryString);
@@ -58,7 +58,7 @@ public class IPLTestCase {
 		displayGroupeByAggregateResult(queryString, records.getGroupByAggregateResult());
 	}
 	
-	//@Test
+	@Test
 	public void getGroupeByCountStar() {
 		queryString = "select city,count(*) from ipl.csv group by city";
 		ResultSet records = query.executeQuery(queryString);
@@ -74,7 +74,7 @@ public class IPLTestCase {
 		displayGroupeByAggregateResult(queryString, records.getGroupByAggregateResult());
 	}
 	
-	@Test
+	//@Test
 	public void getGroupeByAndConditions() {
 		queryString = "select city,winner,team1,team2,player_of_match from ipl.csv "
 				+ "where season >= 2013 or toss_decision != bat and city = Bangalore group by team1";

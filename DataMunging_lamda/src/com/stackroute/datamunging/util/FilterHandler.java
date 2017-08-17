@@ -41,7 +41,7 @@ public class FilterHandler {
 		List<Restriction> restrictions = queryParameter.getRestrictions();
 		List<String> logicationOperators = queryParameter.getLogicalOperators();
 		Map<String, Integer> header = queryParameter.getHeader();
-		boolean flag = false;
+		boolean flag = true;
 		int expressionPosotion = 0;
 		if (restrictions != null && !restrictions.isEmpty()) {
 			// evaluate first expression

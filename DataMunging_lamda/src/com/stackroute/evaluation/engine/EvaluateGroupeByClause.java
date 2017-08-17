@@ -28,6 +28,7 @@ public class EvaluateGroupeByClause implements EvaluateEngine {
 		filterHandler = new FilterHandler();
 		List<List<String>> result = new ArrayList<List<String>>();
 		List<String> selectedFields = queryParameter.getFields();
+		List<AggregateFunction> aggregateFunctions = queryParameter.getAggregateFunctions();
 		try (BufferedReader reader = new BufferedReader(new FileReader(queryParameter.getFile()))) {
 			// read header
 			reader.readLine().split(",");
@@ -37,7 +38,7 @@ public class EvaluateGroupeByClause implements EvaluateEngine {
 				record = Arrays.asList(line.split(","));
 
 				if (filterHandler.isRequiredRecord(queryParameter, record)) {
-					if (!selectedFields.get(0).equals("*")) {
+					if (!selectedFields.get(0).equals("*")  && aggregateFunctions.isEmpty()) {
 						record = filterHandler.filterFields(queryParameter, record);
 					}
 					result.add(record);
