@@ -26,7 +26,7 @@ public class IPLTestCase {
 	}
 	
 
-	@Test
+	//@Test
 	public void getAllRecords() {
 		queryString = "select city,winner,team1,team2 from ipl.csv";
 		ResultSet records = query.executeQuery(queryString);
@@ -34,7 +34,7 @@ public class IPLTestCase {
 		displayRecords(queryString, records);
 	}
 	
-	@Test
+	//@Test
 	public void getCountOfCities() {
 		queryString = "select count(city) from ipl.csv";
 		ResultSet records = query.executeQuery(queryString);
@@ -42,7 +42,7 @@ public class IPLTestCase {
 		displayAggregateResult(queryString, records.getAggregateFunctions());
 	}
 	
-	@Test
+	//@Test
 	public void getGroupeByAggregateCount() {
 		queryString = "select city,count(win_by_wickets) from ipl.csv group by city";
 		ResultSet records = query.executeQuery(queryString);
@@ -50,7 +50,7 @@ public class IPLTestCase {
 		displayGroupeByAggregateResult(queryString, records.getGroupByAggregateResult());
 	}
 	
-	@Test
+//	@Test
 	public void getGroupeByAggregateMax() {
 		queryString = "select city,max(win_by_wickets) from ipl.csv group by city";
 		ResultSet records = query.executeQuery(queryString);
@@ -58,7 +58,7 @@ public class IPLTestCase {
 		displayGroupeByAggregateResult(queryString, records.getGroupByAggregateResult());
 	}
 	
-	@Test
+	//@Test
 	public void getGroupeByCountStar() {
 		queryString = "select city,count(*) from ipl.csv group by city";
 		ResultSet records = query.executeQuery(queryString);
@@ -66,7 +66,7 @@ public class IPLTestCase {
 		displayGroupeByAggregateResult(queryString, records.getGroupByAggregateResult());
 	}
 	
-	@Test
+	//@Test
 	public void getGroupeByAggregateAvg() {
 		queryString = "select city,avg(win_by_wickets) from ipl.csv group by city";
 		ResultSet records = query.executeQuery(queryString);
@@ -75,6 +75,23 @@ public class IPLTestCase {
 	}
 	
 	@Test
+	public void getGroupeByAndConditions() {
+		queryString = "select city,winner,team1,team2,player_of_match from ipl.csv "
+				+ "where season >= 2013 or toss_decision != bat and city = Bangalore group by team1";
+		ResultSet records = query.executeQuery(queryString);
+		assertNotNull("filterData", records);
+		displayGroupeByResult(queryString, records.getGroupByResult());
+	}
+	
+	
+	private void displayGroupeByResult(String queryString, Map<String, List<List<String>>> groupByResult) {
+		System.out.println("\nGiven Query : " + queryString);
+		groupByResult.entrySet().forEach(System.out::println);
+				
+	}
+
+
+	//@Test
 	public void getGroupeByAggregateSum() {
 		queryString = "select city,sum(season) from ipl.csv group by city";
 		ResultSet records = query.executeQuery(queryString);

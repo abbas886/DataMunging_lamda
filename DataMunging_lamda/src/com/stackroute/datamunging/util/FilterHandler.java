@@ -14,22 +14,18 @@ public class FilterHandler {
 		
 		List<String> selectedFields= queryParameter.getFields();
 		
-	//	record.stream().filter(field -> field.split(",")[i]==)
-		
-	//	List<String> selectedFields = queryParameter.getFields();
 		header = queryParameter.getHeader();
 		int fieldPosition;
 		List<String> filteredRecord = new ArrayList<String>();
 		for (String field : selectedFields) {
 			fieldPosition =header.get(field);
 			filteredRecord.add(record.get(fieldPosition));
-			//record.remove(fieldPosition);
 		}
 		return filteredRecord;
 
 	}
 	
-	public List<Integer> getSelectedFieldIndexes(QueryParameter queryParameter)
+	/*public List<Integer> getSelectedFieldIndexes(QueryParameter queryParameter)
 	{
 		List<String> selectedFields = queryParameter.getFields();
 		Map<String, Integer>  header = queryParameter.getHeader();
@@ -38,7 +34,7 @@ public class FilterHandler {
 	
 		
 		
-	}
+	}*/
 
 	public boolean isRequiredRecord(QueryParameter queryParameter, List<String> record) {
 		header = queryParameter.getHeader();

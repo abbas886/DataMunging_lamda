@@ -16,7 +16,7 @@ import com.stackroute.query.parser.Restriction;
 public class EvaluateSimpleQuery implements EvaluateEngine {
 	private ResultSet resultSet;
 	private List<String> record;
-	Map<String, Integer> header;
+	private Map<String, Integer> header;
 	private FilterHandler filterHandler;
 
 
